@@ -1,3 +1,11 @@
+# Eclipse Files #
+#################
+
 /.project
 /.buildpath
 /.settings
+
+# Config File #
+###############
+
+config.php

@@ -4,10 +4,10 @@
  * MySQL Daten
  */
 
-	$dbhost = '';
-	$dbuser = '';
-	$dbpass = '';
-	$dbname = '';
+	$dbhost = 'localhost';
+	$dbuser = 'root';
+	$dbpass = 'sql';
+	$dbname = 'filter_db';
 
 /*
  * Allgemeine Einstellungen

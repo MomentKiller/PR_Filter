@@ -1,3 +1,6 @@
+<?php 
+	include('../config.php');
+?>
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -17,15 +20,63 @@
 	<script src="../js/libs/modernizr.min.js"></script>
 </head>
 <body>
+<div class="container">
 	<header>
-
+		<div class="row">
+			<div class="span12">
+				<div class="navbar">
+					<div class="navbar-inner">
+						<ul class="nav">
+							<li><a href="#">Hersteller</a></li>
+							<li><a href="#">Geschmack Kategorie</a></li>
+							<li><a href="#">Geschmack</a></li>
+							<li><a href="#">Produkt</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 	</header>
-	<div role="main">
 
+	<div class="row" role="main">
+		<div class="span12">
+			<h1>Hersteller</h1>
+			
+			<form class="form-horizontal formHersteller">
+			
+			<div class="control-group">
+				<label class="control-label" for="inputHerstellerName">Name:</label>
+				<div class="controls">
+					<input type="text" name="inputHerstellerName" id="inputHerstellerName" placeholder="Hersteller Name">
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="inputHerstellerLand">Land:</label>
+				<div class="controls">
+					<select name="inputHerstellerLand" id="inputHerstellerLand">
+						<option value="de">Deutschland</option>
+						<option value="ch">Schweiz</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="inputHerstellerLink">Link:</label>
+				<div class="controls">
+					<input type="text" name="inputHerstellerLink" id="inputHerstellerLink" placeholder="Hersteller Link">
+				</div>
+			</div>
+			
+			</form>
+			<button class="btn btn-primary sendHersteller">Senden</button>
+		</div>
 	</div>
-	<footer>
 
+	<footer>
+		&copy; by me
 	</footer>
+</div>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="../js/libs/jquery-1.8.0.min.js"><\/script>')</script>
@@ -38,5 +89,26 @@
 		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
 		s.parentNode.insertBefore(g,s)}(document,'script'));
 	</script>
+
+
+
+<script>
+	$('.sendHersteller').click(function() {
+		var serial = $('.formHersteller').serializeArray();
+		console.log(serial);
+		$.ajax({
+			type: 'POST',
+			url: 'add-producers.php',
+			data: serial,
+			success: function(data) {
+				console.log(data);
+			}
+		});
+	});
+</script>
+
+
+
+
 </body>
 </html>

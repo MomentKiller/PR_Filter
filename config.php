@@ -32,4 +32,5 @@ ini_set('display_errors', 1);
 	if (mysqli_connect_errno()) {
 		die('Konnte keine Verbindung zu Datenbank aufbauen, MySQL meldete: '.mysqli_connect_error());
 	}
+
 ?>

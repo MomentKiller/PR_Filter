@@ -1,5 +1,14 @@
 <?php 
 	include('../config.php');
+	
+	$sql=	"SELECT
+				id, name, lang, link
+			FROM
+				producers
+			ORDER BY
+					id ASC";
+	
+	$result = $db->query($sql);
 ?>
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -31,7 +40,77 @@
 
 	<div class="row" role="main">
 		<div class="span12">
-			<h1>Home</h1>
+			<h1>Hersteller</h1>
+			
+			<form class="form-horizontal formHersteller">
+			
+			<div class="control-group">
+				<label class="control-label" for="inputHerstellerName">Name:</label>
+				<div class="controls">
+					<input type="text" name="inputHerstellerName" id="inputHerstellerName" placeholder="Hersteller Name">
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="inputHerstellerLand">Land:</label>
+				<div class="controls">
+					<select name="inputHerstellerLand" id="inputHerstellerLand">
+						<option value="de">Deutschland</option>
+						<option value="ch">Schweiz</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="inputHerstellerLink">Link:</label>
+				<div class="controls">
+					<input type="text" name="inputHerstellerLink" id="inputHerstellerLink" placeholder="Hersteller Link">
+				</div>
+			</div>
+			
+			</form>
+			<button class="btn btn-primary sendHersteller">Senden</button>
+			
+			<hr />
+			
+			<table class="table table-striped table-bordered table-hover span8">
+			
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Hersteller-Name</th>
+						<th>Hersteller-Land</th>
+						<th>Hersteller-Link</th>
+					</tr>
+				</thead>
+			
+				<tbody>
+				
+					<?php 
+					
+						if ($result->num_rows) {
+							while ($row = $result->fetch_assoc()) {
+								echo "<tr>";
+								echo "<td>".$row['id']."</td>";
+								echo "<td>".$row['name']."</td>";
+								echo "<td>".$row['lang']."</td>";
+								echo "<td>".$row['link']."</td>";
+								echo "</tr>";
+							}
+						}
+					
+					?>
+				
+				
+					<tr>
+						<td>3</td>
+						<td>2</td>
+						<td>1</td>
+					</tr>
+				
+				</tbody>
+			
+			</table>
 		</div>
 	</div>
 
@@ -60,7 +139,7 @@
 		console.log(serial);
 		$.ajax({
 			type: 'POST',
-			url: 'add-producers.php',
+			url: 'add-producer.php',
 			data: serial,
 			success: function(data) {
 				console.log(data);
